@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARAL - Simple Smart Business Management</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7886C7">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="particle-bg" id="particle-bg"></div>
+    
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <div class="logo-animation">
+                <h1 class="splash-logo">SARAL</h1>
+                <p class="splash-tagline" data-translate="tagline">Simple. Secure. Smart.</p>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Auth Screen -->
+    <div id="auth-screen" class="screen hidden">
+        <div class="auth-card glass-card">
+            <div class="logo-container">
+                <h1 class="app-logo">SARAL</h1>
+                <p class="auth-subtitle" data-translate="tagline">Simple. Secure. Smart.</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email" data-translate="email">Email</label>
+                    <input type="email" id="login-email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password" data-translate="password">Password</label>
+                    <input type="password" id="login-password" class="form-control" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block" data-translate="login">Login</button>
+                
+                <div class="auth-switch">
+                    <span data-translate="no_account">Don't have an account?</span>
+                    <a href="#" id="show-register" data-translate="register">Register</a>
+                </div>
+            </form>
+            
+            <div class="language-selector-compact">
+                <select id="language-select-auth" class="form-select">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="ml">മലയാളം</option>
+                    <option value="ta">தமிழ்</option>
+                    <option value="te">తెలుగు</option>
+                    <option value="bn">বাংলা</option>
+                    <option value="gu">ગુજરાતી</option>
+                    <option value="kn">ಕನ್ನಡ</option>
+                    <option value="mr">मराठी</option>
+                    <option value="pa">ਪੰਜਾਬੀ</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Register Screen -->
+    <div id="register-screen" class="screen hidden">
+        <div class="auth-card glass-card">
+            <div class="logo-container">
+                <h1 class="app-logo">SARAL</h1>
+                <p class="auth-subtitle" data-translate="tagline">Simple. Secure. Smart.</p>
+            </div>
+            
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-name" data-translate="full_name">Full Name</label>
+                    <input type="text" id="register-name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-email" data-translate="email">Email</label>
+                    <input type="email" id="register-email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-password" data-translate="password">Password</label>
+                    <input type="password" id="register-password" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-confirm-password" data-translate="confirm_password">Confirm Password</label>
+                    <input type="password" id="register-confirm-password" class="form-control" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block" data-translate="register">Register</button>
+                
+                <div class="auth-switch">
+                    <span data-translate="have_account">Already have an account?</span>
+                    <a href="#" id="show-login" data-translate="login">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Business Setup Screen -->
+    <div id="setup-screen" class="screen hidden">
+        <div class="setup-container glass-card">
+            <h2 data-translate="setup_business">Setup Your Business</h2>
+            <p class="setup-subtitle" data-translate="business_info">Tell us about your business to get started</p>
+            
+            <form id="business-setup-form" class="setup-form">
+                <div class="form-group">
+                    <label for="business-name" data-translate="business_name">Business Name</label>
+                    <input type="text" id="business-name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="business-type" data-translate="business_type">Business Type</label>
+                    <select id="business-type" class="form-control" required>
+                        <option value="" data-translate="select_type">Select Business Type</option>
+                        <option value="retail" data-translate="retail">Retail Store</option>
+                        <option value="restaurant" data-translate="restaurant">Restaurant</option>
+                        <option value="service" data-translate="service">Service Provider</option>
+                        <option value="manufacturing" data-translate="manufacturing">Manufacturing</option>
+                        <option value="other" data-translate="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="business-address" data-translate="address">Address</label>
+                    <textarea id="business-address" class="form-control" rows="3"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" data-translate="continue">Continue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Main Application -->
+    <div id="main-app" class="screen hidden">
+        <!-- Hamburger Menu (Mobile) -->
+        <div class="hamburger" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar glass-card">
+            <div class="sidebar-header">
+                <h1 class="app-logo">SARAL</h1>
+            </div>
+            
+            <div class="nav-menu">
+                <button class="nav-btn active" data-screen="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text" data-translate="dashboard">Dashboard</span>
+                </button>
+                <button class="nav-btn" data-screen="pos">
+                    <span class="nav-icon">💰</span>
+                    <span class="nav-text" data-translate="pos">Quick Sale (POS)</span>
+                </button>
+                <button class="nav-btn" data-screen="products">
+                    <span class="nav-icon">📦</span>
+                    <span class="nav-text" data-translate="products">Products</span>
+                </button>
+                <button class="nav-btn" data-screen="inventory">
+                    <span class="nav-icon">📋</span>
+                    <span class="nav-text" data-translate="inventory">Inventory</span>
+                </button>
+                <button class="nav-btn" data-screen="customers">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text" data-translate="customers">Customers</span>
+                </button>
+                <button class="nav-btn" data-screen="sales">
+                    <span class="nav-icon">💳</span>
+                    <span class="nav-text" data-translate="sales">Sales History</span>
+                </button>
+                <button class="nav-btn" data-screen="loss-tracking">
+                    <span class="nav-icon">📉</span>
+                    <span class="nav-text" data-translate="loss-tracking">Loss Tracking</span>
+                </button>
+                <button class="nav-btn" data-screen="analytics">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-text" data-translate="analytics">Analytics</span>
+                </button>
+                <button class="nav-btn" data-screen="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text" data-translate="settings">Settings</span>
+                </button>
+            </div>
+            
+            <div class="sidebar-toggle" id="sidebar-toggle"></div>
+            
+            <div class="sidebar-footer">
+                <!-- Logout button moved to header -->
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="content-area">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h2 id="page-title" data-translate="dashboard">Dashboard</h2>
+                    <div class="business-selector-container">
+                        <select id="business-selector" class="form-select compact business-selector">
+                            <option value="">Select Business</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="topbar-actions">
+                    <select id="language-select" class="form-select compact">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="ml">മലയാളം</option>
+                        <option value="ta">தமிழ்</option>
+                        <option value="te">తెలుగు</option>
+                        <option value="bn">বাংলা</option>
+                        <option value="gu">ગુજરાતી</option>
+                        <option value="kn">ಕನ್ನಡ</option>
+                        <option value="mr">मराठी</option>
+                        <option value="pa">ਪੰਜਾਬੀ</option>
+                    </select>
+                    <button id="ai-assistant-btn" class="btn btn-icon" title="AI Assistant (Ctrl+K)">
+                        <span>🤖</span>
+                    </button>
+                    <button id="logout-btn" class="btn btn-icon" title="Logout">
+                        <span>🚪</span>
+                    </button>
+                    <button id="help-btn" class="btn btn-icon" title="Help">
+                        <span>❓</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Screens -->
+            <div id="content-container">
+                <!-- Dashboard Screen -->
+                <div id="screen-dashboard" class="content-screen active"></div>
+                
+                <!-- POS Screen -->
+                <div id="screen-pos" class="content-screen"></div>
+                
+                <!-- Products Screen -->
+                <div id="screen-products" class="content-screen"></div>
+                
+                <!-- Inventory Screen -->
+                <div id="screen-inventory" class="content-screen"></div>
+                
+                <!-- Customers Screen -->
+                <div id="screen-customers" class="content-screen"></div>
+                
+                <!-- Sales History Screen -->
+                <div id="screen-sales" class="content-screen"></div>
+                
+                <!-- Loss Tracking Screen -->
+                <div id="screen-loss-tracking" class="content-screen">
+                    <!-- Loss tracking content will be loaded here -->
+                </div>
+                
+                <!-- Analytics Screen -->
+                <div id="screen-analytics" class="content-screen"></div>
+                
+                <!-- Settings Screen -->
+                <div id="screen-settings" class="content-screen"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- AI Assistant Modal -->
+    <div id="ai-assistant-modal" class="modal hidden">
+        <div class="modal-content glass-card ai-chat-container">
+            <div class="modal-header">
+                <h3 data-translate="ai_assistant">SARAL AI Assistant</h3>
+                <button class="close-btn" id="close-ai-assistant">&times;</button>
+            </div>
+            <div class="ai-chat-messages" id="ai-chat-messages"></div>
+            <div class="ai-quick-actions">
+                <button class="quick-action-btn" data-action="sales-summary" data-translate="sales_summary">Sales Summary</button>
+                <button class="quick-action-btn" data-action="low-stock" data-translate="low_stock_alert">Low Stock Alert</button>
+                <button class="quick-action-btn" data-action="best-products" data-translate="best_products">Top Products</button>
+            </div>
+            <div class="ai-chat-input">
+                <input type="text" id="ai-chat-input" placeholder="Ask AI anything..." data-translate-placeholder="ask_ai">
+                <button id="send-ai-message" class="btn btn-primary" data-translate="send">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Container -->
+    <div id="modal-container"></div>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/business.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/pos.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/customers.js"></script>
+    <script src="js/sales.js"></script>
+    <script src="js/inventory.js"></script>
+    <script src="js/loss-tracking.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/ai-assistant.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/init-checker.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>
