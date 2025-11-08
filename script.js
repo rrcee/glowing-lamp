@@ -6,7 +6,6 @@ const CACHE_NAME = 'saral-v1.0.0';
 const urlsToCache = [
   '/',
   '/css/styles.css',
-  '/css/animations.css',
   '/js/utils.js',
   '/js/storage.js',
   '/js/translations.js',
