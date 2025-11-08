@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SARAL - Simple Smart Business Management</title>
+    <!-- Include Lexend Deca font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#7886C7">
+    <meta name="theme-color" content="#4682A9">
 </head>
 <body>
     <!-- Particle Background -->
@@ -52,18 +56,12 @@
                 </div>
             </form>
             
-            <div class="language-selector-compact">
+            <div class="language-selector-container">
+                <label for="language-select-auth" data-translate="select_language">Select Language</label>
                 <select id="language-select-auth" class="form-select">
                     <option value="en">English</option>
                     <option value="hi">हिंदी</option>
                     <option value="ml">മലയാളം</option>
-                    <option value="ta">தமிழ்</option>
-                    <option value="te">తెలుగు</option>
-                    <option value="bn">বাংলা</option>
-                    <option value="gu">ગુજરાતી</option>
-                    <option value="kn">ಕನ್ನಡ</option>
-                    <option value="mr">मराठी</option>
-                    <option value="pa">ਪੰਜਾਬੀ</option>
                 </select>
             </div>
         </div>
@@ -105,6 +103,15 @@
                     <a href="#" id="show-login" data-translate="login">Login</a>
                 </div>
             </form>
+            
+            <div class="language-selector-container">
+                <label for="language-select-register" data-translate="select_language">Select Language</label>
+                <select id="language-select-register" class="form-select">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="ml">മലയാളം</option>
+                </select>
+            </div>
         </div>
     </div>
     
@@ -141,6 +148,15 @@
                     <button type="submit" class="btn btn-primary" data-translate="continue">Continue</button>
                 </div>
             </form>
+            
+            <div class="language-selector-container">
+                <label for="language-select-setup" data-translate="select_language">Select Language</label>
+                <select id="language-select-setup" class="form-select">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="ml">മലയാളം</option>
+                </select>
+            </div>
         </div>
     </div>
     
@@ -153,10 +169,14 @@
             <span></span>
         </div>
         
+        <!-- Mobile Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        
         <!-- Navigation Sidebar -->
         <nav class="sidebar glass-card">
             <div class="sidebar-header">
                 <h1 class="app-logo">SARAL</h1>
+                <div class="business-name" id="current-business-name"></div>
             </div>
             
             <div class="nav-menu">
@@ -221,13 +241,6 @@
                         <option value="en">English</option>
                         <option value="hi">हिंदी</option>
                         <option value="ml">മലയാളം</option>
-                        <option value="ta">தமிழ்</option>
-                        <option value="te">తెలుగు</option>
-                        <option value="bn">বাংলা</option>
-                        <option value="gu">ગુજરાતી</option>
-                        <option value="kn">ಕನ್ನಡ</option>
-                        <option value="mr">मराठी</option>
-                        <option value="pa">ਪੰਜਾਬੀ</option>
                     </select>
                     <button id="ai-assistant-btn" class="btn btn-icon" title="AI Assistant (Ctrl+K)">
                         <span>🤖</span>
@@ -325,7 +338,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
+                navigator.serviceWorker.register('script.js')
                     .then(reg => console.log('Service Worker registered'))
                     .catch(err => console.log('Service Worker registration failed:', err));
             });
